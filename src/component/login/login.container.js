@@ -12,6 +12,8 @@ const Login = () => {
     const [emailError, setEmailError] = useState('')
     const [username, setUsername] = useState('')
     const [usernameError, setUsernameError] = useState('')
+    const [open, setOpen] = React.useState(false);
+
 
     useEffect(() => {
         const x = async () => {
@@ -23,14 +25,18 @@ const Login = () => {
     }, [])
 
     const handleLogin = () => {
-        console.log(email, username)
         username === '' && setUsernameError("Please enter password")
         email === '' && setEmailError("Please enter email")
 
         var x = response.find(item => item.email === email);
-        var logedInUserDetail = JSON.stringify({ email: email, password: username })
-        x != undefined && x.username === username
-            && localStorage.setItem("logedInUser", logedInUserDetail) && browserHistory.push('/home')
+
+        var loggedInUserDetail = JSON.stringify({ email: email, password: username })
+        console.log(loggedInUserDetail)
+        if (x != undefined && x.username === username) {
+
+            localStorage.setItem("loggedInUser", loggedInUserDetail)
+            browserHistory.push('/home')
+        }
 
 
     }
@@ -55,19 +61,34 @@ const Login = () => {
             var x = response.filter((item) => {
                 return item.username === value
             })
-
-            x.length > 0 ? (setUsername(x[0].username) && setUsernameError("") && console.log(x[0].username)) : (setUsernameError("Please enter correct password") && console.log(x[0].username))
+            if (x.length > 0) {
+                setUsername(x[0].username)
+                setUsernameError("")
+            } else {
+                setUsernameError("Please enter correct password")
+            }
 
         }
 
 
     }
 
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
     return <LoginComponent
         handleTextChange={handleTextChange}
         handleLogin={handleLogin}
         emailError={emailError}
         usernameError={usernameError}
+        open={open}
+        handleClose={handleClose}
     />
 }
 

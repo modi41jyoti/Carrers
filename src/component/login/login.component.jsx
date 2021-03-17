@@ -1,10 +1,12 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField';
 import { Button, Grid } from '@material-ui/core'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import './login.scss'
 
 const LoginComponent = (props) => {
-    const { handleTextChange, handleLogin, usernameError, emailError } = props
+    const { handleTextChange, handleLogin, usernameError, emailError, open, handleClose } = props
     return (
         <form className='form' noValidate autoComplete="off">
             <Grid xs={12}>
@@ -32,6 +34,11 @@ const LoginComponent = (props) => {
                 <Button variant="contained" color="primary" size='large' onClick={handleLogin}>
                     LogIn
             </Button>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <MuiAlert elevation={6} variant="filled" {...props} onClose={handleClose} severity="success">
+                        This is a success message!
+                    </MuiAlert>;
+                </Snackbar>
             </Grid>
         </form>
     )

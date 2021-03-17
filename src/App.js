@@ -6,24 +6,11 @@ import { Button } from '@material-ui/core'
 
 function App() {
   return (
-    // <MuiThemeProvider theme={theme}>
-    // <Router history={history}>
-    //   <Switch>
-    //     {AllRoutes},
-    //       <Route exact path="/" key="/" component={Login} />,
-    //       <Route path="*" key="*">
-    //       <NoMatch />
-    //     </Route>
-    //   </Switch>
-    // </Router>
-    // </MuiThemeProvider>
-
     <Router history={browserHistory}>
       <Switch>
         {routes},
-      <NotLoggedInRoute exact path="/" key="/" component={Login} />,
+      <NotLoggedInRoute path="/" key="/" component={Login} />,
       <NotLoggedInRoute
-          exact
           path="/login"
           key="/login"
           component={Login}
