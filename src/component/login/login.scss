@@ -1,0 +1,26 @@
+.form{
+    border: 1px solid black;
+    display: grid;
+    justify-content: center;
+    width: 45%;
+    height: 40%;
+    align-items: center;
+    margin: auto;
+    box-shadow: 4px 3px 6px 5px grey;
+    align-self: center;
+    margin-top: 12%; 
+    
+}
+
+.emailTextField {
+    padding-top: 20px;
+    margin: 40px !important;
+    width: 40vw
+}
+
+
+.loginButton{
+    justify-content: center;
+    display: flex;
+    margin: 40px;
+}
